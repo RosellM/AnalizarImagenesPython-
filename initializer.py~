@@ -1,0 +1,55 @@
+from backp import NeuralNetwork
+import numpy as np
+
+class DataManagement:
+           def __init__(self):
+                      self.x=[]
+                      self.X=[]
+                      self.y=[]
+                      self.Y=[]
+                      self.i = 0
+                      self.entradas = []
+                      self.salidas = []
+                      self.datos = []
+           def loadAllData(self):
+                      self.file = open('data.txt', 'r')
+                      for line in self.file:
+                                 self.y = line.split("=")
+                                 self.x = line.split(",")
+                                 index = len(self.x) -1
+                                 element = self.x[index]
+                                 self.x.remove(element)
+                                 for j in range(0, len(self.x)):
+                                            self.x[j]  = int(self.x[j])
+                                 print len(self.x)
+                                 self.X.append(self.x)
+                                 self.Y.append(int(self.y[1].replace("\n", '')))
+
+                      
+           def selectRegionForTraining(self):
+                      for line in range(1, 41):
+                                 self.entradas.append(self.X[line])
+                                 self.salidas.append(self.Y[line])
+                      self.datos.append(self.entradas)
+                      self.datos.append(self.salidas)          
+                      return self.datos
+           def selectRegionForPredict(self):
+                      for line in range(41,59):
+                                 self.entradas.append(self.X[line])
+                                 self.salidas.append(self.Y[line])
+                      self.datos.append(self.entradas)
+                      self.datos.append(self.salidas)          
+                      return self.datos
+                                 
+                      
+data = DataManagement()
+nn = NeuralNetwork([143,143,1]);
+#loadFileForTraining()
+nn.show()
+data.loadAllData()
+valores  = data.selectRegionForTraining()
+nn.fit(valores[0], valores[1])
+valores  = data.selectRegionForPredict()
+for i in valores[0]:
+           print(i,nn.predict(i))
+

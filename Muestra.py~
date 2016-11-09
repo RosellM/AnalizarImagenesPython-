@@ -1,0 +1,15 @@
+class Muestra:
+	
+	colorPixelsOFYUP = []
+	colorPixelsOFYDOWN = []
+
+	colorPixelsOFXUP = []
+	colorPixelsOFXDOWN = []
+	
+	def __init__(self, colorPixelsOFYUP, colorPixelsOFYDOWN, colorPixelsOFXUP,colorPixelsOFXDOWN ):
+		  self.colorPixelsOFYUP = colorPixelsOFYUP
+		  self.colorPixelsOFYDOWN = colorPixelsOFYDOWN
+		  self.colorPixelsOFXUP = colorPixelsOFXUP
+		  self.colorPixelsOFXDOWN = colorPixelsOFXDOWN
+	
+	
